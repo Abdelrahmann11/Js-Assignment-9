@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Style/all.min.css">
+    <link rel="stylesheet" href="/Style/bootstrap.min.css">
+    <link rel="stylesheet" href="/Style/style.css">
+    <title>Assignment 10</title>
+</head>
+<body>
+    <div class="container my-5 text-center">
+        <div class="loginCard m-auto p-5 w-75">
+            <h1 style="color: #17a2b8;">Smart Login System</h1>
+            <input type="text" oninput="UserNameValidation()" id="SignUpNameInput" class="form-control my-3" placeholder="Please Enter Your Name" required/>
+            <div class="alert alert-danger d-none" id="NameError">Your name must start with capital letter</div>
+            <input type="text" oninput="UserEmailValidation()" id="SignUpEmailInput" class="form-control my-3" placeholder="Please Enter Your Email" required/>
+            <div class="alert alert-danger d-none" id="EmailError">Your email must contain number and end with (@gmai.com) or (@hotmail.com)</div>
+            <input type="password" oninput="UserpassValidation()" id="SignUpPassInput" class="form-control my-3" placeholder="Please Enter Your Password" required/>
+            <div class="alert alert-danger d-none" id="PassError">Your password must be more than 8 characters (A- Z) may contain (@ / %) and numbers</div>
+            <p id="SignUpP"></p>
+            <button class="btn btn-outline-info w-100 my-3" onclick="SignUp()">SignUp</button>
+            <p class="text-white">
+                You have an account?
+                <a class="text-white" href="/index.html">SignIn</a>
+            </p>
+        </div>  
+    </div>
+    <script src="/Js/bootstrap.bundle.min.js"></script>
+    <script src="/Js/Js.Js"></script>
+</body>
+</html>

@@ -1,97 +1,47 @@
 body{
-    padding: 0;
-    margin: 0;
-    background-color: #F7ECDE;
+    background-color: #24353F;
+    font-family: 'Titillium Web', sans-serif;
 }
 
-*::selection {
-    background-color: #fec260;
-    color: #352e28;
+.loginCard{
+    box-shadow: -5px 2px 54px -9px rgba(0, 0, 0, 1);
+}
+
+input{
+    background-color: transparent !important;
+    color: #fff !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+} 
+
+.navbar-dark .navbar-brand {
+    text-decoration: none;
 }
 
 h1{
-    font-family: 'Pacifico', cursive;
-    font-size: 50px;
-    color: #352e28;
-    position: relative;
+    color: #17A2B8;
 }
 
-h1::before{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 25%;
-    left: 0;
-    bottom: 10px;
-    background-color: #fec260;
-    transition: height 350ms;
-    z-index: -1;
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
 }
 
-h1:hover::before{
-    height: 50%;
+.navbar-dark .navbar-nav .nav-link {
+    text-decoration: none;
 }
 
-.BookmarkerBody{
-    border-width: 2px 0 2px 0;
-    border-style: dotted;
-    border-color: #352e28;
+.navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid {
+    margin: 0 170px;
+    padding: 0 15px;
 }
 
-.BookmarkerBody h2{
-    font-family: 'PT Sans Caption', sans-serif;
-    font-size: 25px;
-    background-image: linear-gradient(to right, #3ca55c, #b5ac49);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.BookmarkerBody label{
-    font-family: 'PT Sans Caption', sans-serif;
-    font-size: 16px;
-    font-weight: 600!important;
-}
-
-.form-control:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #d99c39;
-    outline: 0;
-    box-shadow: 0 0 0 0.25rem #fec26055;
-}
-
-.btnSubmit{
-    color: #fff;
-    background-color: #d1512d;
-    border-color: #d1512d;
-}
-
-.btnSubmit:hover{
-    color: #fff;
-    background-color: #bb4120;
-    border-color: #a03315;
-}
-
-.btnVisit{
-    color: #fff;
-    background-color: #9eb23b;
-    border-color: #9eb23b;
-}
-
-.btnVisit:hover{
-    color: #fff;
-    background-color: #8a9e23;
-    border-color: #6e8018;
-}
-
-.btnDelete{
-    color: #fff;
-    background-color: #eb1d36;
-    border-color: #eb1d36;
-}
-
-.btnDelete:hover{
-    color: #fff;
-    background-color: #d30820;
-    border-color: #ba081d;
+.Home{
+    width: 1140px;
+    height: 260px;
 }

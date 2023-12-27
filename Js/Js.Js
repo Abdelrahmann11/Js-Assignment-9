@@ -1,119 +1,157 @@
-// window.history.pushState("", "", "/");
+let NameError = document.getElementById("NameError");
+let EmailError = document.getElementById("EmailError");
+let PassError = document.getElementById("PassError");
 
-var BookName = document.getElementById("BookmarkerName");
-var SiteURL = document.getElementById("BookmarkerURL");
-var TableBody = document.getElementById("TableContent");
-var NameError = document.getElementById("NameError");
-var URLError = document.getElementById("URLError");
+function UserNameValidation(){
+    var regex = /^[a-zA-Z]{2,}|\s[a-zA-Z]{2,}$/
 
-var BookList;
-if(localStorage.getItem("BookList")){
-    BookList = JSON.parse(localStorage.getItem("BookList"));
-    DisplayBook(BookList);
-} else{
-    BookList = [];
-}
-
-function getBook(){
-    // console.log("Clicked");
-    // console.log(BookName.value);
-    // console.log(SiteURL.value);
-
-    if(BookNameValidation() && BookURLValidation()){
-        var Book = {
-            name : BookName.value,
-            URL: SiteURL.value,
-        }
-    
-        BookList.push(Book);
-    } else {
-        console.log("Validation Error");
-    }
-    // console.log(BookList);
-    SaveToLocalStorage();
-
-    DisplayBook(BookList);
-
-    BookName.value = "";
-    SiteURL.value = "";
-
-}
-
-function DisplayBook(BookList){
-    // console.log(BookList);
-    var Cartoona = "";
-    for(var i =0;i<BookList.length ;i++){
-        // console.log(BookList[i]);
-        Cartoona +=`<tr>
-        <td>${i}</td>
-        <td>${BookList[i].name}</td>
-        <td>
-            <button class="btn btnVisit">
-                <a href="//${BookList[i].URL}" style="text-decoration: none; color: white;">
-                    <i class="fa-solid fa-eye pe-2" style="color: white;"></i>
-                    Visit
-                </a>
-            </button>
-        </td>
-        <td>
-            <button class="btn btnDelete pe-2" onclick="BookDelete(${i})">
-                <i class="fa-solid fa-trash-can" style="color: #ffffff;"></i>
-                Delete
-            </button>
-        </td>
-    </tr>`
-    }
-    // console.log(Cartoona);
-    TableBody.innerHTML = Cartoona;
-}
-
-function BookDelete(i){
-    // console.log("del", i);
-    BookList.splice(i, 1);
-    SaveToLocalStorage();
-    // console.log(BookList);
-    DisplayBook(BookList);
-}
-
-function SaveToLocalStorage(){
-    localStorage.setItem("BookList", JSON.stringify(BookList))
-}
-
-function BookNameValidation(){
-    var regex = /^[a-zA-Z]{2,}$/
-
-    if(regex.test(BookName.value)){
+    if(regex.test(enteredSignUpName.value)){
         NameError.classList.replace("d-block", "d-none")
-        BookName.classList.add("is-valid");
-        BookName.classList.remove("is-invalid");
         return true;
     } else{
         NameError.classList.replace("d-none", "d-block")
-        BookName.classList.add("is-invalid");
-        BookName.classList.remove("is-valid");
         return false;
     }
 }
 
-function BookURLValidation(){
-    // var regex = /^www[A-Z]{1}|[a-z]{1}[a-z]{1,}\.[c]{1}[o]{1}[m]{1}$/;
-    // var regex = /^www\.[a-zA-Z]{1}[a-z]{1,}\.com$/;
-    // ^((https)|(http))|(www.)[a-zA-Z]{1,}(\.com)$
-    // var regex = /^((https:\/\/)|(http:\/\/))(www\.)[a-zA-Z]{1,}(\.com)$/;
-    var regex = /^((https:\/\/)|(http:\/\/))|(www\.)[a-zA-Z]{1,}(\.com)$/;
+function UserEmailValidation(){
+    var regex = /^[a-zA-Z]{2,}[0-9]{0,}(@)((gmail\.com)|(hotmail\.com))$/
 
-    if(regex.test(SiteURL.value)){
-        URLError.classList.replace("d-block", "d-none")
-        SiteURL.classList.add("is-valid");
-        SiteURL.classList.remove("is-invalid");
+    if(regex.test(enteredSignUpEmail.value)){
+        EmailError.classList.replace("d-block", "d-none")
         return true;
     } else{
-        URLError.classList.replace("d-none", "d-block")
-        SiteURL.classList.add("is-invalid");
-        SiteURL.classList.remove("is-valid");
+        EmailError.classList.replace("d-none", "d-block")
         return false;
     }
-
 }
-var regex = /^www\.[a-z]{1,}\.com$/;
-console.log(regex.test("www.ddd.com"));
+
+function UserpassValidation(){
+    var regex = /^[a-zA-Z]{8,}[0-9]{0,}((@){0,}(%){0,})$/
+
+    if(regex.test(enteredSignUpPass.value)){
+        PassError.classList.replace("d-block", "d-none")
+        return true;
+    } else{
+        PassError.classList.replace("d-none", "d-block")
+        return false;
+    }
+}
+
+
+
+
+
+var enteredSignUpName = document.getElementById("SignUpNameInput");
+var enteredSignUpEmail = document.getElementById("SignUpEmailInput");
+var enteredSignUpPass = document.getElementById("SignUpPassInput");
+
+var enteredSignInEmail = document.getElementById("SignInEmailInput");
+var enteredSignInPass = document.getElementById("SignInPassInput");
+
+var SignUpP = document.getElementById("SignUpP");
+var SignInP = document.getElementById("InCorrect");
+
+var HomeUserName = document.getElementById("HomeUserName");
+
+var userName = localStorage.getItem("UserName")
+
+// let x = location.pathname
+
+// console.log(x)
+// /Pages/home.html
+if(location.pathname === "/Pages/home.html" && userName == null){
+    location.href="/index.html"
+}
+
+if(userName){
+    HomeUserName.innerHTML= "Welcome " + userName
+    console.log("Welcom " + userName);
+}
+
+var UserArray;
+if(localStorage.getItem("UserData") == null){
+    UserArray = []
+} else{
+    UserArray = JSON.parse(localStorage.getItem("UserData"))
+}
+
+function InputEmptyChecker(){
+    if(enteredSignUpName.value == "" || enteredSignUpEmail.value == "" || enteredSignUpPass.value == ""){
+        return false
+    } else {
+        return true
+    }
+}
+
+function SignUp(){
+    if(InputEmptyChecker() == false){
+        SignUpP.innerHTML='<span class="text-danger m-3">All Input Fields Are Required</span>'
+        return false
+    }
+    if(UserEmailValidation() && UserNameValidation() && UserpassValidation()){
+        var UserData = {
+            name : enteredSignUpName.value,
+            email : enteredSignUpEmail.value,
+            pass : enteredSignUpPass.value,
+        }
+            UserArray.push(UserData)
+            localStorage.setItem("UserData",JSON.stringify(UserArray))
+            SignUpP.innerHTML='<span class="text-success m-3">Success</span>'
+            InputFieldEmpty()
+            location.href="/index.html"
+            return true
+    }
+        if(EmailExistChecker() == false){
+            SignUpP.innerHTML='<span class="text-danger m-3">Email Already Exist</span>'
+        } else{
+            UserArray.push(UserData)
+            localStorage.setItem("UserData",JSON.stringify(UserArray))
+            SignUpP.innerHTML='<span class="text-success m-3">Success</span>'
+            InputFieldEmpty()
+        }
+}
+
+function EmailExistChecker(){
+    for(var i =0;i<UserArray.length; i++){
+        if(UserArray[i].email.toLowerCase() == enteredSignUpEmail.value.toLowerCase()){
+            return false
+        }
+    }
+}
+
+function InputFieldEmpty(){
+    enteredSignUpName.value=""
+    enteredSignUpEmail.value=""
+    enteredSignUpPass.value=""
+}
+
+function LoginEmpty(){
+    if(enteredSignInEmail.value == "" || enteredSignInPass.value == ""){
+        return false
+    } else{
+        return true
+    }
+}
+
+function Login(){
+    if(LoginEmpty() == false){
+        SignInP.innerHTML='<span class="text-danger m-3">All Input Fields Are Required</span>'
+    }
+    
+    var LoginEmail = enteredSignInEmail.value;
+    var LoginPass = enteredSignInPass.value;
+    
+    for(var i =0; i<UserArray.length; i++){
+        if(UserArray[i].email.toLowerCase() == LoginEmail.toLowerCase() && UserArray[i].pass.toLowerCase() == LoginPass.toLowerCase()){
+            localStorage.setItem("UserName", UserArray[i].name)
+            location.href = "/Pages/home.html"
+        } else{
+            SignInP.innerHTML='<span class="text-danger m-3">InCorrect Email or Password</span>'
+        }
+    }
+}
+
+function LogOut(){
+    localStorage.removeItem("UserName");
+}
